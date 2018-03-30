@@ -3,7 +3,7 @@ import socket
 
 class TCP(object):
 
-    def __init__(self, ip='localhost', port='8089'):
+    def __init__(self, ip='localhost', port=8089):
         self.ip = ip
         self.port = port
 
@@ -16,16 +16,16 @@ class TCP(object):
         if not self.server_set:
             self.sock.bind((self.ip, self.port))
             self.sock.listen(backlog)
-        self.conenction, address = self.sock.accept()
+        self.connection, address = self.sock.accept()
         return self.connection
 
     def client(self):
         self.sock.connect((self.ip, self.port))
         self.connection = self.sock
-        return self.conenction
+        return self.connection
 
     def recv(self, length=4096):
-        return self.conenction.recv(length)
+        return self.connection.recv(length)
 
     def send(self, data):
         self.connection.sendall(data)
